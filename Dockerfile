@@ -1,4 +1,4 @@
-FROM mysql:5.7.26
+FROM mysql:5.7.31
 
 LABEL maintainer="Stefan Neuhaus <stefan@stefanneuhaus.org>"
 
@@ -14,10 +14,12 @@ COPY gradlew /dependencycheck/
 
 RUN set -ex && \
     echo "deb http://http.debian.net/debian stretch-backports main" >/etc/apt/sources.list.d/stretch-backports.list; \
+    echo "deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list; \
     apt-get update; \
     mkdir -p /usr/share/man/man1; \
-    apt-get install -y -t stretch-backports openjdk-8-jre-headless procps cron; \
+    apt-get install -y -t stretch-backports openjdk-8-jre-headless procps ca-certificates-java cron; \
     apt-get purge -y --auto-remove; \
+    apt-get remove -y --allow-remove-essential exim4-base exim4-config exim4-daemon-light libntlm0 libperl5.28 libpython2.7 libpython2.7-minimal libpython2.7-stdlib; \
     rm -rf /var/lib/apt; \
     /dependencycheck/gradlew --no-daemon wrapper; \
     echo "0 * * * *  /dependencycheck/update.sh" >/etc/cron.d/dependencycheck-database-update; \
