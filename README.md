@@ -1,4 +1,4 @@
-##IMPORTANT
+## IMPORTANT
 Forked version of https://github.com/stefanneuhaus/dependencycheck-central-mysql-docker
 
 Updated Dockerfile to use MySQL 5.7.31 image (as well as apt remove some HIGH vulnerable packages)
