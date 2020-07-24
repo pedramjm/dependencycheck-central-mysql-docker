@@ -1,3 +1,9 @@
+##IMPORTANT
+Forked version of https://github.com/stefanneuhaus/dependencycheck-central-mysql-docker
+
+Updated Dockerfile to use MySQL 5.7.31 image (as well as apt remove some HIGH vulnerable packages)
+
+
 # DependencyCheck Central Database Docker
 
 Docker-based self-updating central [OWASP DependencyCheck](https://www.owasp.org/index.php/OWASP_Dependency_Check) Database Server.
